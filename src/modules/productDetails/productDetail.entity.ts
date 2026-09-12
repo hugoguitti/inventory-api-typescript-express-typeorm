@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from "typeorm";
+import { Product } from "../products/product.entity.js";
 
 @Entity()
-export class Product {
+export class ProductDetails {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -20,7 +21,6 @@ export class Product {
   @Column()
   warrantyMonths?: number;
 
-  // TODO relations
-  // @Column()
-  // product!: boolean
+  @OneToOne(() => Product, (product) => product.detail)
+  product!: Product;
 }

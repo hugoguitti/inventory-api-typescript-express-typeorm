@@ -1,5 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Unique,
+  ManyToOne,
+  OneToOne,
+  ManyToMany,
+} from "typeorm";
 import { ProductStatus } from "./product.status.js";
+import { Category } from "../categories/category.entity.js";
+import { ProductDetails } from "../productDetails/productDetail.entity.js";
+import { Tag } from "../tags/tag.entity.js";
 
 @Entity()
 @Unique(["sku"])
@@ -32,12 +43,12 @@ export class Product {
   metadata?: Record<string, string | number | boolean>;
 
   // TODO relations
-  // @Column()
-  // category!: boolean
+  @ManyToOne(() => Category, (category) => category.products)
+  category!: Category;
 
-  // @Column()
-  // detail!: boolean
+  @OneToOne(() => ProductDetails, (details) => details.product)
+  detail!: ProductDetails;
 
-  // @Column()
-  // tags!: boolean
+  @ManyToMany(() => Tag, (tags) => tags.products)
+  tags!: Tag[];
 }

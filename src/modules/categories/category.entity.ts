@@ -1,6 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  Unique,
+} from "typeorm";
+import { Product } from "../products/product.entity.js";
 
 @Entity()
+@Unique(["name"])
 export class Category {
   @PrimaryGeneratedColumn()
   id!: number;
@@ -11,7 +19,6 @@ export class Category {
   @Column({ length: 80 })
   description?: string;
 
-  // TODO relations
-  // @Column()
-  // products!: boolean
+  @OneToMany(() => Product, (product) => product.category)
+  products!: Product[];
 }

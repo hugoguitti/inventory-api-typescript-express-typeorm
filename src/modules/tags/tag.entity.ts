@@ -1,14 +1,21 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Unique,
+  ManyToMany,
+} from "typeorm";
+import { Product } from "../products/product.entity.js";
 
 @Entity()
-export class Product {
+@Unique(["name"])
+export class Tag {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column({ length: 40 })
   name!: string;
 
-  // TODO relations
-  // @Column()
-  // product!: boolean
+  @ManyToMany(() => Product, (products) => products.tags)
+  products!: Product[];
 }
