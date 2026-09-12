@@ -1,14 +1,34 @@
 {
-    "compilerOptions": {
-      "target": "esnext",
-      "module": "nodenext",
-      "rewriteRelativeImportExtensions": true,
-      "erasableSyntaxOnly": true,
-      "verbatimModuleSyntax": true,
-      "noEmit": true,
-      "strict": true,
-      "skipLibCheck": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-    }
-  }
+  "compilerOptions": {
+    // JavaScript moderno gerado pelo TypeScript
+    "target": "ES2022",
+
+    // Segue o sistema de módulos real do Node
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    // Código-fonte
+    "rootDir": "./src",
+
+    // Build gerado
+    "outDir": "./dist",
+
+    // TypeScript mais rigoroso
+    "strict": true,
+
+    // Evita checar internals das dependências
+    "skipLibCheck": true,
+
+    // Compatibilidade de imports com libs CommonJS
+    "esModuleInterop": true,
+
+    // TypeORM decorators
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    // Melhor source map para debugging em produção
+    "sourceMap": true
+  },
+
+  "include": ["src"]
+}
