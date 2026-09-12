@@ -42,7 +42,6 @@ export class Product {
   @Column()
   metadata?: Record<string, string | number | boolean>;
 
-  // TODO relations
   @ManyToOne(() => Category, (category) => category.products)
   category!: Category;
 
