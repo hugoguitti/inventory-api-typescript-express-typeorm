@@ -18,36 +18,36 @@ export class Product {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ length: 120 })
+  @Column("varchar", { length: 120 })
   name!: string;
 
-  @Column({ length: 64 })
+  @Column("varchar", { length: 64 })
   sku!: string;
 
-  @Column()
+  @Column("integer")
   priceInCents!: number;
 
-  @Column()
+  @Column("integer")
   stock!: number;
 
-  @Column()
+  @Column("varchar")
   status!: ProductStatus;
 
-  @Column()
+  @Column("boolean")
   featured!: boolean;
 
   @Column("double")
   rating?: number;
 
-  @Column()
+  @Column("simple-json")
   metadata?: Record<string, string | number | boolean>;
 
-  @ManyToOne(() => Category, (category) => category.products)
-  category!: Category;
+  // @ManyToOne(() => Category, (category) => category.products)
+  // category!: Category;
 
-  @OneToOne(() => ProductDetails, (details) => details.product)
-  detail!: ProductDetails;
+  // @OneToOne(() => ProductDetails, (details) => details.product)
+  // detail!: ProductDetails;
 
-  @ManyToMany(() => Tag, (tags) => tags.products)
-  tags!: Tag[];
+  // @ManyToMany(() => Tag, (tags) => tags.products)
+  // tags!: Tag[];
 }
